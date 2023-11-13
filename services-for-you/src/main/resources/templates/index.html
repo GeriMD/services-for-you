@@ -7,7 +7,57 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header, footer {
+            flex-grow: 1;
+
+        }
+        main {
+            flex-grow: 6;
+        }
+
+        div.container::before {
+            display: none;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+
+        @media screen and (max-width: 1000px) {
+            .container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav, .navbar-brand {
+                text-align: center;
+                float: none;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
 </head>
+
 
 
 <body>
@@ -51,7 +101,7 @@
 
     <!-- Section: Links  -->
     <section class="">
-        <div class="container text-center text-md-start mt-5">
+        <div class="container1 text-center text-md-start mt-5">
             <!-- Grid row -->
             <div class="row mt-3">
                 <!-- Grid column -->
