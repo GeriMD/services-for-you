@@ -68,20 +68,32 @@
                 <a class="navbar-brand" href="#">Services for you</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
+                <li><a th:text="#{navbar_home}" href="#">Home</a></li>
 
-                <li><a href="#">About us</a></li>
+                <li><a th:text="#{navbar_about}" href="#">About us</a></li>
                 <li><a href="#">All services</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span></span> Register</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a th:text="#{navbar_register}" href="#"><span></span> Register</a></li>
+                <li><a th:text="#{navbar_login}" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 <li class="dropdown"><a class="dropdown-toggle; glyphicon glyphicon-user" data-toggle="dropdown"
-                                        href="#">Profile<span class="caret"></span></a>
+                                     th:text="#{navbar_profile}"   href="#">Profile<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">View profile</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a th:text="#{navbar_view_profile}" href="#">View profile</a></li>
+                        <li><a th:text="#{navbar_logout}" href="#">Logout</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
                 </li>
             </ul>
         </div>
