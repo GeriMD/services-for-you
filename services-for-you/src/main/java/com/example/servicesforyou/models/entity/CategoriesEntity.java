@@ -12,6 +12,9 @@ public class CategoriesEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private ServicesCategoryEnum categories;
 
+    public CategoriesEntity() {
+    }
+
     public ServicesCategoryEnum getCategories() {
         return categories;
     }
