@@ -16,10 +16,10 @@ spring:
   security:
     oauth2:
       client:
-       # registration:
-        #  facebook:
-          #  client-id: your-client-id-here
-            #client-secret: your-secret-here
+      registration:
+        facebook:
+            client-id: your-client-id-here
+            client-secret: your-secret-here
   sql:
     init:
       mode: always
