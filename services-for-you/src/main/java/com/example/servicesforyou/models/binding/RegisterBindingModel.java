@@ -15,6 +15,7 @@ public class RegisterBindingModel {
 
     @NotNull
     @Email
+    @Size(min = 2,max = 30)
     private String email;
 
     @NotNull
@@ -28,6 +29,8 @@ public class RegisterBindingModel {
     @Size(min = 6)
     private String password;
 
+
+    @Size(min = 6)
     @NotNull
     private String confirmPassword;
 

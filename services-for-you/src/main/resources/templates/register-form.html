@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Services for you</title>
     <meta charset="utf-8">
@@ -9,74 +9,98 @@
 
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Services for you</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-
-                <li><a href="#">About us</a></li>
-                <li><a href="#">All services</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="users/register"><span></span> Register</a></li>
-                <li><a href="users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li class="dropdown"><a class="dropdown-toggle; glyphicon glyphicon-user" data-toggle="dropdown"
-                                        href="#">Profile<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="users/view/profile">View profile</a></li>
-                        <li><a href="users/logout">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+<div th:replace="fragments/commons">  </div>
 
 <div class="container">
 
 
-    <form style="width:300px; margin:auto;" action="https://www.javatpoint.com/javascriptpages/valid.jsp"
-        <h1>Register</h1>
-    <form th:action="@{/users/register}"
+    <form style="width:300px; margin:auto;"  th:action="@{/users/register}"
           th:method="post"
           th:object="${userModel}">
-        <div class="form-group">
+        <h1>Register</h1>
+    <form>
+        <div class="form-group"  >
             <label for="firstName">First Name*</label>
-            <input type="text" class="form-control" id="firstName" placeholder="First Name">
+            <input
+                    th:field="*{firstName}"
+                    th:errorclass="is-invalid"
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder="First Name">
+            <small class="invalid-feedback text-danger">NO</small>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+            <input
+                    th:field="*{lastName}"
+                    th:errorclass="is-invalid"
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder="Last Name">
+            <small class="invalid-feedback text-danger">NO</small>
         </div>
         <div class="form-group">
             <label for="email">Email*</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
+            <input
+                    th:field="*{email}"
+                    th:errorclass="is-invalid"
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    placeholder="Email">
+            <small class="invalid-feedback text-danger">NO</small>
         </div>
         <div class="form-group">
             <label for="age">Age*</label>
-            <input type="text" class="form-control" id="age" placeholder="Age">
+            <input
+                    th:field="*{age}"
+                    th:errorclass="is-invalid"
+                    type="text"
+                    class="form-control"
+                    id="age"
+                    placeholder="Age">
+            <small class="invalid-feedback text-danger">NO</small>
         </div>
         <div class="form-group">
             <label for="phoneNumber">Phone number*</label>
-            <input type="text" class="form-control" id="phoneNumber" placeholder="Phone number">
+            <input
+                    th:field="*{phoneNumber}"
+                    th:errorclass="is-invalid"
+                    type="text"
+                    class="form-control"
+                    id="phoneNumber"
+                    placeholder="Phone number">
+            <small class="invalid-feedback text-danger">NO</small>
         </div>
         <div class="form-group">
             <label for="password">Password*</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input
+                    th:field="*{password}"
+                    th:errorclass="is-invalid"
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Password">
+            <small class="invalid-feedback text-danger">NO</small>
         </div>
         <div class="form-group">
             <label for="confirmPassword">Confirm password*</label>
-            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
-        </div>
-        <div >
-            All fields with * are required!
-        </div>
+            <input th:field="*{confirmPassword}"
+                   th:errorclass="is-invalid"
+                    type="password"
+                   class="form-control"
+                   id="confirmPassword"
+                   placeholder="Confirm password">
 
-        <button type="submit" class="btn btn-default" >Register</button>
+        </div>
+        <p class="invalid-feedback errors alert alert-danger">
+            Confirmation password is required.
+        </p>
+
+
+        <button type="submit" class="btn btn-default" value="Register" >Register</button>
     </form>
     </form>
 

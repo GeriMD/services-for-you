@@ -2,6 +2,8 @@ package com.example.servicesforyou.services;
 
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.entity.UserEntity;
+import com.example.servicesforyou.models.entity.UserRolesEntity;
+import com.example.servicesforyou.models.enums.RolesEnum;
 import com.example.servicesforyou.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,11 +30,15 @@ public class UserService {
         this.userRepository = userRepository;
         this.userDetailsService = userDetailsService;
         this.modelMapper = modelMapper;
+
+
     }
 
     public void registerAndLoginUser(RegisterBindingModel registerBindingModel){
-        UserEntity user = modelMapper.map(registerBindingModel, UserEntity.class);
+     UserEntity user = modelMapper.map(registerBindingModel, UserEntity.class);
         user.setPassword(passwordEncoder.encode(registerBindingModel.getPassword()));
+        user.setUserRoles(List.of());
+
 
         userRepository.save(user);
         login(user.getEmail());

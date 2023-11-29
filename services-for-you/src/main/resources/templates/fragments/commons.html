@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <title>Services for you</title>
   <meta charset="utf-8">
@@ -16,32 +17,28 @@
         <a class="navbar-brand" href="#">Services for you</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a th:text="#{navbar_home}" href="#">Home</a></li>
+        <li><a  href="/">Home</a></li>
 
-        <li><a th:text="#{navbar_about}" href="#">About us</a></li>
-        <li><a href="#">All services</a></li>
+        <li><a  href="/about">About us</a></li>
+        <li><a href="/offers/all">All services</a></li>
+        <li sec:authorize="hasRole('SELLER')"
+        ><a href="/offers/add">Add your service</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a th:text="#{navbar_register}" href="users/register"><span></span> Register</a></li>
-        <li><a th:text="#{navbar_login}" href="users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <th:block sec:authorize="!isAuthenticated()">
+          <li><a  href="/users/register"><span></span> Register</a></li>
+          <li><a  href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </th:block>
+
         <li class="dropdown"><a class="dropdown-toggle; glyphicon glyphicon-user" data-toggle="dropdown"
-                                th:text="#{navbar_profile}"   href="#">Profile<span class="caret"></span></a>
+                                   href="#">Profile<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a th:text="#{navbar_view_profile}" href="users/view/profile">View profile</a></li>
-            <li><a th:text="#{navbar_logout}" href="users/logout">Logout</a></li>
+            <li><a  href="/users/view/profile">View profile</a></li>
+            <th:block sec:authorize="isAuthenticated()">
+              <li th:action="@{/users/logout}" th:method="post"><a  href="/">Logout</a></li>
+            </th:block>
+
           </ul>
-        </li>
-        <li class="nav-item">
-          <form th:method="get">
-            <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
-            <select
-                    onchange="this.form.submit()"
-                    id="lang"
-                    name="lang">
-              <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
-              <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
-            </select>
-          </form>
         </li>
       </ul>
     </div>

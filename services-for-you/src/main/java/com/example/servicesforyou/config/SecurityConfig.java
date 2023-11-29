@@ -2,7 +2,7 @@ package com.example.servicesforyou.config;
 
 import com.example.servicesforyou.repositories.UserRepository;
 import com.example.servicesforyou.services.MyUserDetailsService;
-import com.example.servicesforyou.services.OAuthSuccessHandler;
+
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 @Configuration
 public class SecurityConfig {
 
@@ -24,8 +25,9 @@ public class SecurityConfig {
     }
 
    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http,
-                                           OAuthSuccessHandler oAuthSuccessHandler) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http
+                                          ) throws Exception {
+
         http
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
@@ -49,8 +51,7 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
-               // .and().oauth2Login().loginPage("/users/login")
-              //  .successHandler(oAuthSuccessHandler);
+
 
         return http.build();
 

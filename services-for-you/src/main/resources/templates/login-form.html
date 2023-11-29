@@ -10,46 +10,43 @@
 
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Services for you</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-
-                <li><a href="#">About us</a></li>
-                <li><a href="#">All services</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span></span> Register</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li class="dropdown"><a class="dropdown-toggle; glyphicon glyphicon-user" data-toggle="dropdown"
-                                        href="#">Profile<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">View profile</a></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+<div th:replace="fragments/commons">  </div>
 
 <div class="container">
 
 
-    <form style="width:300px; margin: auto;" action="https://www.javatpoint.com/javascriptpages/valid.jsp">
+    <form style="width:300px; margin: auto;" th:action="@{/users/login}"
+          th:method="post" >
         <h1>Login</h1>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+        <div
+                class="form-group">
+            <label for="username">Email address</label>
+            <input
+                    type="text"
+                    th:value="${username}"
+                    name = "username"
+                    class="form-control"
+                    id="username"
+                    min = "2"
+                    max = "30"
+                    placeholder="Email"
+            >
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <label for="password">Password</label>
+            <input
+                    type="password"
+                    name = "password"
+                    class="form-control"
+                    id="password"
+                    min = "6"
+                    placeholder="Password">
         </div>
+
+        <p th:if="${failed}" class="invalid-feedback errors alert alert-danger">
+            Invalid username or password. Please try again.
+
+        </p>
 
         <button type="submit" class="btn btn-default">Login</button>
     </form>
