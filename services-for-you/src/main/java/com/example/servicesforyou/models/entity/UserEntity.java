@@ -29,7 +29,7 @@ public class UserEntity extends BaseEntity {
     private String phoneNumber;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRolesEntity> userRoles = new ArrayList<>();
 
     @ManyToOne

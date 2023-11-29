@@ -21,7 +21,7 @@
 
         <li><a  href="/about">About us</a></li>
         <li><a href="/offers/all">All services</a></li>
-        <li sec:authorize="hasRole('SELLER')"
+        <li
         ><a href="/offers/add">Add your service</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -35,7 +35,9 @@
           <ul class="dropdown-menu">
             <li><a  href="/users/view/profile">View profile</a></li>
             <th:block sec:authorize="isAuthenticated()">
-              <li th:action="@{/users/logout}" th:method="post"><a  href="/">Logout</a></li>
+              <form th:action="@{/users/logout}" th:method="post">
+                <input class="btn btn-link nav-link" type="submit" th:value="Logout">
+              </form>
             </th:block>
 
           </ul>
