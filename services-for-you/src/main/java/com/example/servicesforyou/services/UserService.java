@@ -1,9 +1,11 @@
 package com.example.servicesforyou.services;
 
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
+import com.example.servicesforyou.models.entity.TownsEntity;
 import com.example.servicesforyou.models.entity.UserEntity;
 import com.example.servicesforyou.models.entity.UserRolesEntity;
 import com.example.servicesforyou.models.enums.RolesEnum;
+import com.example.servicesforyou.models.enums.TownsEnum;
 import com.example.servicesforyou.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -76,6 +78,7 @@ public class UserService {
                 getContext().
                 setAuthentication(auth);
     }
+
 
     }
 

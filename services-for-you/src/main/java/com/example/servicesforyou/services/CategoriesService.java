@@ -16,15 +16,18 @@ public class CategoriesService {
         this.categoryRepository = categoryRepository;
     }
 
-    public void initCategories(){
+    public void initCategories() {
+        if (categoryRepository.count() != 0){
+            return;
+        }
 
-        Arrays.stream(ServicesCategoryEnum.values()).forEach(
-                servicesCategoryEnum -> {
-                    CategoriesEntity category = new CategoriesEntity();
-                    category.setCategories(servicesCategoryEnum);
+            Arrays.stream(ServicesCategoryEnum.values()).forEach(
+                    servicesCategoryEnum -> {
+                        CategoriesEntity category = new CategoriesEntity();
+                        category.setCategories(servicesCategoryEnum);
 
-                    categoryRepository.save(category);
-                }
-        );
+                        categoryRepository.save(category);
+                    }
+            );
     }
 }
