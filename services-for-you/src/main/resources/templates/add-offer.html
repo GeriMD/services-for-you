@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Services for you</title>
     <meta charset="utf-8">
@@ -14,26 +14,58 @@
 <div class="container">
 
 
-    <form style="width:300px; margin:auto;" action="https://www.javatpoint.com/javascriptpages/valid.jsp">
+    <form style="width:300px; margin:auto;" th:action="@{/offers/add}"
+          th:method="post"
+          th:object="${addOfferModel}">
         <h1>Add offer</h1>
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="email" class="form-control" id="username" placeholder="Username">
+            <label class="text-center text-white font-weight-bold" for="category">Category</label>
+            <select
+                    id="category"
+                    name="category"
+                    th:errorclass="is-invalid"
+                    class="form-control">
+                <option value="">- Select category -</option>
+                <option th:each="c : ${T(com.example.servicesforyou.models.enums.ServicesCategoryEnum).values()}"
+                        th:text="${c}"
+                        th:value="${c}"
+                        th:selected="${c} == *{category}">
+                    Category
+                </option>
+            </select>
+            <p class="invalid-feedback errors alert alert-danger">
+                Category is required.
+            </p>
         </div>
         <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
+            <label for="description">Description</label>
+            <input
+                    th:field="*{description}"
+                    th:errorclass="is-invalid"
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    placeholder="Description">
+            <p class="invalid-feedback errors alert alert-danger">
+                Description is required.
+            </p>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword">Confirm password</label>
-            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
+            <label for="price">Price</label>
+            <input
+                    type="number"
+                    th:field="*{price}"
+                    th:errorclass="is-invalid"
+                    class="form-control"
+                    id="price"
+                    min = "0"
+                    placeholder="Price">
+            <p class="invalid-feedback errors alert alert-danger">
+                Price is required.
+            </p>
         </div>
 
-        <button type="submit" class="btn btn-default" >Register</button>
+        <button type="submit" class="btn btn-default" >Add</button>
     </form>
 
 </div>

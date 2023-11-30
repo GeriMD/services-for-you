@@ -1,6 +1,8 @@
 package com.example.servicesforyou.models.entity;
 
 
+import com.example.servicesforyou.models.enums.TownsEnum;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +30,22 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String phoneNumber;
 
+    public TownsEnum getTown() {
+        return town;
+    }
+
+    public void setTown(TownsEnum town) {
+        this.town = town;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TownsEnum town;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRolesEntity> userRoles = new ArrayList<>();
 
-    @ManyToOne
-
-    private TownsEntity town;
 
     public UserEntity() {
     }
@@ -52,14 +63,6 @@ public class UserEntity extends BaseEntity {
 
     public void setUserRoles(List<UserRolesEntity> userRoles) {
         this.userRoles = userRoles;
-    }
-
-    public TownsEntity getTown() {
-        return town;
-    }
-
-    public void setTown(TownsEntity town) {
-        this.town = town;
     }
 
     public String getPassword() {

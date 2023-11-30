@@ -1,5 +1,7 @@
 package com.example.servicesforyou.models.binding;
 
+import com.example.servicesforyou.models.enums.TownsEnum;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,6 +26,17 @@ public class RegisterBindingModel {
 
     @NotNull
     private int age;
+
+    @NotNull
+    private TownsEnum town;
+
+    public TownsEnum getTown() {
+        return town;
+    }
+
+    public void setTown(TownsEnum town) {
+        this.town = town;
+    }
 
     @NotNull
     @Size(min = 6)
