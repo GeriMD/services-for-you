@@ -2,7 +2,10 @@ package com.example.servicesforyou.services;
 
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.entity.UserEntity;
+import com.example.servicesforyou.models.entity.UserRolesEntity;
+import com.example.servicesforyou.models.enums.RolesEnum;
 import com.example.servicesforyou.repositories.UserRepository;
+import com.example.servicesforyou.repositories.UserRolesRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,13 +24,15 @@ public class UserService {
     private  PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
     private UserDetailsService userDetailsService;
+    private final UserRolesRepository rolesRepository;
 
     private ModelMapper modelMapper;
 
-    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository, UserDetailsService userDetailsService, ModelMapper modelMapper) {
+    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository, UserDetailsService userDetailsService, UserRolesRepository rolesRepository, ModelMapper modelMapper) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userDetailsService = userDetailsService;
+        this.rolesRepository = rolesRepository;
         this.modelMapper = modelMapper;
 
 
@@ -35,7 +41,13 @@ public class UserService {
     public void registerAndLoginUser(RegisterBindingModel registerBindingModel){
      UserEntity user = modelMapper.map(registerBindingModel, UserEntity.class);
         user.setPassword(passwordEncoder.encode(registerBindingModel.getPassword()));
-        user.setUserRoles(List.of());
+       String roleString = "USER";
+       RolesEnum role = RolesEnum.valueOf(roleString);
+       UserRolesEntity roleUser = rolesRepository.findByRole(role).orElseThrow();
+
+        List<UserRolesEntity> roles = new ArrayList<>();
+        roles.add(roleUser);
+        user.setUserRoles(roles);
 
 
         userRepository.save(user);

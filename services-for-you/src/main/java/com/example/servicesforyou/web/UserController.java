@@ -5,6 +5,7 @@ import com.example.servicesforyou.models.binding.SendRequestBindingModel;
 import com.example.servicesforyou.repositories.UserRepository;
 import com.example.servicesforyou.services.RequestService;
 import com.example.servicesforyou.services.UserService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/users")
@@ -59,7 +61,7 @@ public class UserController {
 
         this.userService.registerAndLoginUser(userModel);
 
-        return "redirect:/";
+        return "redirect:/users/view/profile";
 
     }
 
@@ -90,6 +92,12 @@ public class UserController {
 
         return "redirect:/";
 
+    }
+
+    @GetMapping("/view/profile")
+    public String viewProfile(@AuthenticationPrincipal Principal principal, Model model){
+        model.addAttribute("currentUser", principal);
+        return "view-profile";
     }
 
 
