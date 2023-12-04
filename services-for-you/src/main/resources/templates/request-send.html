@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Services for you</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+</head>
+<body>
+<div th:replace="fragments/commons">  </div>
+
+<div class="container">
+
+
+    <form style="width:300px; margin:auto;"  th:action="@{/users/send/request}"
+          th:method="post" th:object="${requestModel}">
+        <h1>Become a seller</h1>
+
+        <form>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                        th:field="*{email}"
+                        th:errorclass="is-invalid"
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="Email">
+                <small class="invalid-feedback text-danger">NO</small>
+            </div>
+            <div class="form-group"  >
+                <label for="firstName">First Name</label>
+                <input
+                        th:field="*{firstName}"
+                        th:errorclass="is-invalid"
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        placeholder="First Name">
+                <small class="invalid-feedback text-danger">NO</small>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input
+                        th:field="*{lastName}"
+                        th:errorclass="is-invalid"
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        placeholder="Last Name">
+                <small class="invalid-feedback text-danger">NO</small>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input
+                        th:field="*{description}"
+                        th:errorclass="is-invalid"
+                        type="text"
+                        class="form-control"
+                        id="description"
+                        placeholder="Description">
+                <small class="invalid-feedback text-danger">NO</small>
+            </div>
+
+            <button type="submit" class="btn btn-default" value="Send" >Send</button>
+        </form>
+    </form>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<main>
+
+</main>
+
+<footer class="text-center text-lg-start bg-white text-muted">
+
+    <!-- Section: Links  -->
+    <section class="">
+        <div class="container1 text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Categories
+                    </h6>
+                    <!-- TODO: make links to my services ordered by categories when they are ready! -->
+                    <p>
+                        <a href="#!" class="text-reset">Angular</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">React</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Vue</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Laravel</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Links
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">Home</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">FQAs</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Help</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">Contact us</h6>
+                    <p><i class="fas fa-home me-3 text-secondary"></i> Vidin, Bulgaria</p>
+                    <p>
+                        <i class="fas fa-envelope me-3 text-secondary"></i>
+                        servicesforyou@examproject.bg
+                    </p>
+                    <p><i class="fas fa-phone me-3 text-secondary"></i> +359 088 888 8888</p>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>
