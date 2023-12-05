@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Services for you</title>
@@ -7,55 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    header, footer {
-      flex-grow: 1;
-
-    }
-    main {
-      flex-grow: 6;
-    }
-
-     div.container::before {
-        display: none;
-      }
-
-      .container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-      }
-
-
-      @media screen and (max-width: 1000px) {
-        .container {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      @media screen and (max-width: 767px) {
-        .container {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        nav, .navbar-brand {
-          text-align: center;
-          float: none;
-        }
-      }
-
-      @media screen and (max-width: 600px) {
-        .container {
-          grid-template-columns: repeat(1, 1fr);
-        }
-      }
-</style>
 </head>
 <body>
 <div th:replace="fragments/commons">  </div>
@@ -65,86 +16,12 @@
 
 
 <main>
-  <div class="container">
-
-    <div class="panel panel-warning" >
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>Panel title <!--TODO: make panel for every offer where title is offer type enum, content is from who is the offer + price + town and footer is link to the offer --></strong></h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-      <div class="panel-footer">
-        <strong>Panel footer</strong>
-      </div>
+  <div th:each="offer : ${offers.getContent()}" th:object="${offer}" class="panel-group">
+    <div class="panel panel-default" style="width: 600px; display: flex">
+      <div class="panel-heading">Seller: <span th:text="*{sellerFirstName}"> </span></div>
+      <div class="panel-body">Category: <span th:text="*{category}"></span></div>
+      <div class="panel-body">Price: <span th:text="*{price}"></span></div>
     </div>
-    <div class="panel panel-warning" >
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>Panel title <!--TODO: make panel for every offer where title is offer type enum, content is from who is the offer + price + town and footer is link to the offer --></strong></h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-      <div class="panel-footer">
-        <strong>Panel footer</strong>
-      </div>
-    </div>
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>Panel title <!--TODO: make panel for every offer where title is offer type enum, content is from who is the offer + price + town and footer is link to the offer --></strong></h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-      <div class="panel-footer">
-        <strong>Panel footer</strong>
-      </div>
-    </div>
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>Panel title <!--TODO: make panel for every offer where title is offer type enum, content is from who is the offer + price + town and footer is link to the offer --></strong></h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-      <div class="panel-footer">
-        <strong>Panel footer</strong>
-      </div>
-    </div>
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>Panel title <!--TODO: make panel for every offer where title is offer type enum, content is from who is the offer + price + town and footer is link to the offer --></strong></h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-      <div class="panel-footer">
-        <strong>Panel footer</strong>
-      </div>
-    </div>
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>Panel title <!--TODO: make panel for every offer where title is offer type enum, content is from who is the offer + price + town and footer is link to the offer --></strong></h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-      <div class="panel-footer">
-        <strong>Panel footer</strong>
-      </div>
-    </div>
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>Panel title <!--TODO: make panel for every offer where title is offer type enum, content is from who is the offer + price + town and footer is link to the offer --></strong></h3>
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-      <div class="panel-footer">
-        <strong>Panel footer</strong>
-      </div>
-    </div>
-
   </div>
 </main>
 

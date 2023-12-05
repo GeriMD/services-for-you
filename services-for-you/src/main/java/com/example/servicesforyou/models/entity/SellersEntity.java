@@ -79,4 +79,12 @@ public class SellersEntity {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public List<OfferEntity> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<OfferEntity> offers) {
+        this.offers = offers;
+    }
 }

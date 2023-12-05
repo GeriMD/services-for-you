@@ -3,6 +3,7 @@ package com.example.servicesforyou.models.entity;
 import com.example.servicesforyou.models.enums.ServicesCategoryEnum;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,26 +12,27 @@ public class OfferEntity extends BaseEntity {
 
 
     private String description;
-    private double price;
+    private BigDecimal price;
 
     @ManyToOne
-    private UserEntity seller;
+    private SellersEntity seller;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ServicesCategoryEnum category;
 
 
-
     public OfferEntity() {
     }
-    public double getPrice() {
+
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
     public ServicesCategoryEnum getCategory() {
         return category;
     }
@@ -38,6 +40,7 @@ public class OfferEntity extends BaseEntity {
     public void setCategory(ServicesCategoryEnum category) {
         this.category = category;
     }
+
     public String getDescription() {
         return description;
     }
@@ -47,11 +50,11 @@ public class OfferEntity extends BaseEntity {
     }
 
 
-    public UserEntity getSeller() {
+    public SellersEntity getSeller() {
         return seller;
     }
 
-    public void setSeller(UserEntity seller) {
+    public void setSeller(SellersEntity seller) {
         this.seller = seller;
     }
 }
