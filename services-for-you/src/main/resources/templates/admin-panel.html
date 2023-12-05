@@ -9,9 +9,9 @@
 </head>
 <body>
 <div th:replace="fragments/commons"></div>
-<div class="container" >
+<div class="container">
     <h2>Admin panel</h2>
-    <div th:each="request : ${requests.getContent()}" th:object="${request}" class="panel-group" >
+    <div th:each="request : ${requests.getContent()}" th:object="${request}" class="panel-group">
         <div class="panel panel-default" style="width: 600px; display: flex">
             <div class="panel-heading">Email: <span th:text="*{email}"> </span></div>
             <div class="panel-body">First Name: <span th:text="*{firstName}"></span></div>
@@ -22,6 +22,14 @@
                         th:method="delete"
                 >
                     <input type="submit" value="Delete">
+                </form>
+            </div>
+            <div class="card-body">
+                <form
+                        th:action="@{/admin/all/requests/{id}(id=*{id})}"
+                        th:method="post"
+                >
+                    <input type="submit" value="Confirm">
                 </form>
             </div>
         </div>
