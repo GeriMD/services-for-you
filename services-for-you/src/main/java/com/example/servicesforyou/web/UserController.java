@@ -9,10 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -94,11 +91,16 @@ public class UserController {
 
     }
 
-    @GetMapping("/view/profile")
-    public String viewProfile(@AuthenticationPrincipal Principal principal, Model model){
-        model.addAttribute("currentUser", principal);
-        return "view-profile";
-    }
+   // @GetMapping("/view/profile/{id}")
+   // public String viewProfile(@PathVariable("id") Long id, Model model){
+     //   var userDto = userService.findUserById(id).orElseThrow();
+
+      //  model.addAttribute("user", userDto);
+
+
+     //   return "view-profile";
+   // TODO user must can view his profile
+    //  }
 
 
 

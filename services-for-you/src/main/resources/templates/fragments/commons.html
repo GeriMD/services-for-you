@@ -34,7 +34,10 @@
         <li class="dropdown"><a class="dropdown-toggle; glyphicon glyphicon-user" data-toggle="dropdown"
                                    href="#">Profile<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a  href="/users/view/profile">View profile</a></li>
+            <form  th:method="get">
+              <!--TODO user must can view his profile -->
+              <input class="btn btn-link nav-link" type="submit" th:value="View profile">
+            </form>
             <th:block sec:authorize="isAuthenticated()">
               <form th:action="@{/users/logout}" th:method="post">
                 <input class="btn btn-link nav-link" type="submit" th:value="Logout">

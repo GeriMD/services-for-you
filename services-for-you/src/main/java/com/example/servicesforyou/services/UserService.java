@@ -5,6 +5,8 @@ import com.example.servicesforyou.models.entity.UserEntity;
 import com.example.servicesforyou.models.entity.UserRolesEntity;
 import com.example.servicesforyou.models.enums.RolesEnum;
 import com.example.servicesforyou.models.enums.TownsEnum;
+import com.example.servicesforyou.models.mapper.UserMapper;
+import com.example.servicesforyou.models.user.UserDTO;
 import com.example.servicesforyou.repositories.UserRepository;
 import com.example.servicesforyou.repositories.UserRolesRepository;
 import org.modelmapper.ModelMapper;
@@ -18,18 +20,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
-    private  PasswordEncoder passwordEncoder;
-    private UserRepository userRepository;
-    private UserDetailsService userDetailsService;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final UserDetailsService userDetailsService;
     private final UserRolesRepository rolesRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+    private final UserMapper userMapper;
 
-    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository, UserDetailsService userDetailsService, UserRolesRepository rolesRepository, ModelMapper modelMapper) {
+    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository, UserDetailsService userDetailsService, UserRolesRepository rolesRepository, ModelMapper modelMapper, UserMapper userMapper) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userDetailsService = userDetailsService;
@@ -37,6 +41,7 @@ public class UserService {
         this.modelMapper = modelMapper;
 
 
+        this.userMapper = userMapper;
     }
 
     public void registerAndLoginUser(RegisterBindingModel registerBindingModel){
@@ -109,7 +114,15 @@ public class UserService {
     }
 
 
+    public Optional<UserDTO> findUserById(Long id) {
+   return userRepository.findById(id).map(userMapper::offerEntityToUserDTO);
+
+
+
     }
+
+
+}
 
 
 

@@ -24,7 +24,7 @@ public class UserEntity extends BaseEntity {
     private String lastName;
 
     @Column(nullable = false)
-    private int age;
+    private Integer age;
     private String imageUrl;
 
     @Column(nullable = false)
