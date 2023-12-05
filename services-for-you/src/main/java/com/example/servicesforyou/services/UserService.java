@@ -4,6 +4,7 @@ import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.entity.UserEntity;
 import com.example.servicesforyou.models.entity.UserRolesEntity;
 import com.example.servicesforyou.models.enums.RolesEnum;
+import com.example.servicesforyou.models.enums.TownsEnum;
 import com.example.servicesforyou.repositories.UserRepository;
 import com.example.servicesforyou.repositories.UserRolesRepository;
 import org.modelmapper.ModelMapper;
@@ -55,20 +56,40 @@ public class UserService {
 
     }
 
-    public void createUserIfNotExist(String email) {
+    public void createAdminIfNotExist() {
 
-        var userOpt = this.userRepository.findByEmail(email);
-        if (userOpt.isEmpty()) {
-            UserEntity newUser = new UserEntity();
-            newUser.setEmail(email);
-            newUser.setPassword(null);
-            newUser.setFirstName("New");
-            newUser.setLastName("User");
-            newUser.setUserRoles(List.of());
-
-
-            userRepository.save(newUser);
+        if (userRepository.count() != 0){
+            return;
         }
+        List<UserRolesEntity> rolesList = new ArrayList<>();
+        String roleStringAdmin = "ADMIN";
+        String roleStringUser = "USER";
+        String roleStringSeller = "SELLER";
+
+        RolesEnum adminRole = RolesEnum.valueOf(roleStringAdmin);
+        RolesEnum userRole = RolesEnum.valueOf(roleStringUser);
+        RolesEnum sellerRole = RolesEnum.valueOf(roleStringSeller);
+
+        UserRolesEntity roleAdmin = rolesRepository.findByRole(adminRole).orElseThrow();
+        UserRolesEntity roleUser = rolesRepository.findByRole(userRole).orElseThrow();
+        UserRolesEntity roleSeller = rolesRepository.findByRole(sellerRole).orElseThrow();
+
+        rolesList.add(roleAdmin);
+        rolesList.add(roleUser);
+        rolesList.add(roleSeller);
+
+
+        UserEntity admin = new UserEntity();
+        admin.setEmail("admin@abv.bg");
+        admin.setFirstName("Admin");
+        admin.setLastName("Adminov");
+        admin.setAge(18);
+        admin.setPhoneNumber("0888888888");
+        admin.setPassword(passwordEncoder.encode("adminpass"));
+        admin.setTown(TownsEnum.VIDIN);
+        admin.setUserRoles(rolesList);
+        userRepository.save(admin);
+
     }
 
     public void login(String email){
