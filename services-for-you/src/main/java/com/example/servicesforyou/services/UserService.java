@@ -6,7 +6,7 @@ import com.example.servicesforyou.models.entity.UserRolesEntity;
 import com.example.servicesforyou.models.enums.RolesEnum;
 import com.example.servicesforyou.models.enums.TownsEnum;
 import com.example.servicesforyou.models.mapper.UserMapper;
-import com.example.servicesforyou.models.user.UserDTO;
+import com.example.servicesforyou.models.DTO.UserDTO;
 import com.example.servicesforyou.repositories.UserRepository;
 import com.example.servicesforyou.repositories.UserRolesRepository;
 import org.modelmapper.ModelMapper;

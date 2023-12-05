@@ -1,28 +1,19 @@
-package com.example.servicesforyou.models.binding;
+package com.example.servicesforyou.models.DTO;
 
-import com.example.servicesforyou.models.enums.TownsEnum;
+public class RequestDTO {
 
-import javax.validation.constraints.NotNull;
+    private Long id;
 
-public class SendRequestBindingModel {
-
-    @NotNull
     private String email;
-
-    @NotNull
     private String firstName;
     private String lastName;
 
-    private String description;
-
-
-
-    public String getDescription() {
-        return description;
+    public Long getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -48,4 +39,5 @@ public class SendRequestBindingModel {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Services for you</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+</head>
+<body>
+<div th:replace="fragments/commons"></div>
+<div class="container" >
+    <h2>Admin panel</h2>
+    <div th:each="request : ${requests.getContent()}" th:object="${request}" class="panel-group" >
+        <div class="panel panel-default" style="width: 600px; display: flex">
+            <div class="panel-heading">Email: <span th:text="*{email}"> </span></div>
+            <div class="panel-body">First Name: <span th:text="*{firstName}"></span></div>
+            <div class="panel-body">Last Name: <span th:text="*{lastName}"></span></div>
+            <div class="card-body">
+                <form
+                        th:action="@{/admin/all/requests/{id}(id=*{id})}"
+                        th:method="delete"
+                >
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

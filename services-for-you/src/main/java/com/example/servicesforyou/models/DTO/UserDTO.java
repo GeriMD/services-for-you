@@ -1,4 +1,4 @@
-package com.example.servicesforyou.models.user;
+package com.example.servicesforyou.models.DTO;
 
 import com.example.servicesforyou.models.entity.UserRolesEntity;
 import com.example.servicesforyou.models.enums.TownsEnum;

@@ -49,6 +49,11 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity() {
     }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
