@@ -2,6 +2,7 @@ package com.example.servicesforyou.web;
 
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.binding.SendRequestBindingModel;
+import com.example.servicesforyou.models.entity.UserEntity;
 import com.example.servicesforyou.repositories.UserRepository;
 import com.example.servicesforyou.services.RequestService;
 import com.example.servicesforyou.services.UserService;
@@ -91,16 +92,20 @@ public class UserController {
 
     }
 
-   // @GetMapping("/view/profile/{id}")
-   // public String viewProfile(@PathVariable("id") Long id, Model model){
-     //   var userDto = userService.findUserById(id).orElseThrow();
+    @GetMapping("/profile")
+    public String viewProfile(Model model, Principal principal){
 
-      //  model.addAttribute("user", userDto);
+        if (principal == null){
+            return "redirect:/users/login";
+        }
+        var user = userService.findUserByEmail(principal.getName()).orElseThrow();
+
+        model.addAttribute("user", user);
 
 
-     //   return "view-profile";
-   // TODO user must can view his profile
-    //  }
+        return "view-profile";
+
+     }
 
 
 

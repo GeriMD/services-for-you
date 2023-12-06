@@ -114,14 +114,10 @@ public class UserService {
     }
 
 
-    public Optional<UserDTO> findUserById(Long id) {
-   return userRepository.findById(id).map(userMapper::offerEntityToUserDTO);
 
-
-
+    public Optional<UserDTO> findUserByEmail(String name) {
+        return userRepository.findByEmail(name).map(userMapper::offerEntityToUserDTO);
     }
-
-
 }
 
 

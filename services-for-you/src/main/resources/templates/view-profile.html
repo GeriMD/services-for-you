@@ -8,18 +8,17 @@
 </head>
 <body>
 <div th:replace="fragments/commons">  </div>
-<div class="container" ><!-- th:action="@{/users/view/profile/{id}(id = *{id})}"
-th:method="get" th:object="${user}">
+<div class="container"  th:object="${user}">
     <h2>Profile</h2>
-    <div class="panel-group">
+    <div class="panel-group" style="display: flex">
         <div class="panel panel-default">
-            <div class="panel-heading">Email <span th:text="*{username}"></span></div>
-            <div class="panel-body">First Name <span th:text="*{firstName}"></span></div>
-            <div class="panel-body">Last Name <span th:text="*{lastName}"></span></div>
-            <div class="panel-body">Age <span th:text="*{age}"></span></div>
-            <div class="panel-body">Town <span th:text="*{town}"></span></div>
+            <div class="panel-heading">Name: <span th:text="*{userFullName}"></span></div>
+            <div class="panel-body">Email: <span th:text="*{email}"></span></div>
+            <div class="panel-body">Age: <span th:text="*{age}"></span></div>
+            <div class="panel-body">Town: <span th:text="*{town}"></span></div>
+            <div class="panel-body">Phone: <span th:text="*{phoneNumber}"></span></div>
         </div>
-         TODO: user must can view his profile-->
+
 
     </div>
 </div>
