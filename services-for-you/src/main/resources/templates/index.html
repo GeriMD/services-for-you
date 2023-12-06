@@ -7,55 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        header, footer {
-            flex-grow: 1;
-
-        }
-        main {
-            flex-grow: 6;
-        }
-
-        div.container::before {
-            display: none;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-
-        @media screen and (max-width: 1000px) {
-            .container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media screen and (max-width: 767px) {
-            .container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            nav, .navbar-brand {
-                text-align: center;
-                float: none;
-            }
-        }
-
-        @media screen and (max-width: 600px) {
-            .container {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-    </style>
 </head>
 
 
@@ -66,89 +17,24 @@
 <div th:replace="fragments/commons">  </div>
 
 
+
+<div class="container-fluid">
+    <h1 class="text-center text-black mt-5">
+        Welcome! We are Services for you!
+    </h1>
+    <h2 class="text-center text-black mt-5">
+       Looking for help when you don't have time to do some boring chores?
+        That is why we are here! In our website you can find services from other people who can help you in your busy days.
+    </h2>
+    <h3 class="text-center text-black mt-5">
+        And why don't you become part of our team? Send request to become seller here <a th:href="@{/users/send/request}">Become seller!</a>
+    </h3>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
-
-
-
-
-<footer class="text-center text-lg-start bg-white text-muted">
-
-    <!-- Section: Links  -->
-    <section class="">
-        <div class="container1 text-center text-md-start mt-5">
-            <!-- Grid row -->
-            <div class="row mt-3">
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        Categories
-                    </h6>
-                     <!-- TODO: make links to my services ordered by categories when they are ready! -->
-                    <p>
-                        <a href="#!" class="text-reset">Angular</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">React</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Vue</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Laravel</a>
-                    </p>
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        Links
-                    </h6>
-                    <p>
-                        <a href="#!" class="text-reset">Home</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">FQAs</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Help</a>
-                    </p>
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">Contact us</h6>
-                    <p><i class="fas fa-home me-3 text-secondary"></i> Vidin, Bulgaria</p>
-                    <p>
-                        <i class="fas fa-envelope me-3 text-secondary"></i>
-                        servicesforyou@examproject.bg
-                    </p>
-                    <p><i class="fas fa-phone me-3 text-secondary"></i> +359 088 888 8888</p>
-                </div>
-                <!-- Grid column -->
-            </div>
-            <!-- Grid row -->
-        </div>
-    </section>
-    <!-- Section: Links  -->
-
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-</footer>
 </body>
 </html>
