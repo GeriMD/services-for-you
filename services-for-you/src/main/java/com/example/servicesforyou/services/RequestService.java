@@ -80,4 +80,8 @@ public class RequestService {
         requestRepository.deleteById(id);
 
     }
+
+    public void deleteAllRequests() {
+        requestRepository.deleteAll();
+    }
 }
