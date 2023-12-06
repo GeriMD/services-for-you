@@ -1,5 +1,7 @@
 package com.example.servicesforyou.models.DTO;
 
+import com.example.servicesforyou.models.enums.TownsEnum;
+
 public class RequestDTO {
 
     private Long id;
@@ -7,6 +9,15 @@ public class RequestDTO {
     private String email;
     private String firstName;
     private String lastName;
+    private TownsEnum town;
+
+    public TownsEnum getTown() {
+        return town;
+    }
+
+    public void setTown(TownsEnum town) {
+        this.town = town;
+    }
 
     public Long getId() {
         return id;

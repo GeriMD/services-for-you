@@ -16,6 +16,7 @@
             <div class="panel-heading">Email: <span th:text="*{email}"> </span></div>
             <div class="panel-body">First Name: <span th:text="*{firstName}"></span></div>
             <div class="panel-body">Last Name: <span th:text="*{lastName}"></span></div>
+            <div class="panel-body">Town <span th:text="*{town}"></span></div>
             <div class="card-body">
                 <form
                         th:action="@{/admin/all/requests/{id}(id=*{id})}"
