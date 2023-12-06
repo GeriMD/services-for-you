@@ -2,6 +2,8 @@ package com.example.servicesforyou.models.binding;
 
 import com.example.servicesforyou.models.enums.TownsEnum;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,6 +30,7 @@ public class RegisterBindingModel {
     private int age;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private TownsEnum town;
 
     public TownsEnum getTown() {

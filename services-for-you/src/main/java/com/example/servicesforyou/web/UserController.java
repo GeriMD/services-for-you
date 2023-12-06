@@ -1,5 +1,6 @@
 package com.example.servicesforyou.web;
 
+import com.example.servicesforyou.exception.ObjectNotFoundException;
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.binding.SendRequestBindingModel;
 import com.example.servicesforyou.models.entity.UserEntity;
@@ -74,17 +75,13 @@ public class UserController {
                               RedirectAttributes redirectAttributes){
 
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors() || userService.findUserByEmail(requestModel.getEmail()).isEmpty()){
             redirectAttributes.addFlashAttribute("requestModel", requestModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.requestModel", bindingResult);
 
             return "redirect:/users/send/request";
         }
 
-        if (userRepository.findByEmail(requestModel.getEmail()).isEmpty()){
-            //TODO error - not found user with this email address in the database
-            return "redirect:/";
-        }
 
         requestService.addRequest(requestModel);
 
@@ -98,7 +95,7 @@ public class UserController {
         if (principal == null){
             return "redirect:/users/login";
         }
-        var user = userService.findUserByEmail(principal.getName()).orElseThrow();
+        var user = userService.findUserByEmail(principal.getName()).orElseThrow(() -> new ObjectNotFoundException("User with username " + principal.getName() + " not found!"));
 
         model.addAttribute("user", user);
 

@@ -1,6 +1,7 @@
 package com.example.servicesforyou.services;
 
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
+import com.example.servicesforyou.models.entity.SellersEntity;
 import com.example.servicesforyou.models.entity.UserEntity;
 import com.example.servicesforyou.models.entity.UserRolesEntity;
 import com.example.servicesforyou.models.enums.RolesEnum;
@@ -93,9 +94,11 @@ public class UserService {
         admin.setPassword(passwordEncoder.encode("adminpass"));
         admin.setTown(TownsEnum.VIDIN);
         admin.setUserRoles(rolesList);
+
         userRepository.save(admin);
 
     }
+
 
     public void login(String email){
 
