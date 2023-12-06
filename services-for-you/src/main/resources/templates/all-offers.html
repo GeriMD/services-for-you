@@ -15,7 +15,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
-<main>
   <div th:each="offer : ${offers.getContent()}" th:object="${offer}" class="panel-group">
     <div class="panel panel-default" style="width: 600px; display: flex">
       <div class="panel-heading">Seller: <span th:text="*{sellerFirstName}"> </span></div>
@@ -26,7 +25,32 @@
       </div>
     </div>
   </div>
-</main>
+
+<div class="container-fluid container-fluid row justify-content-center">
+  <nav>
+    <ul class="pagination">
+      <li class="page-item" th:classappend="${offers.hasPrevious() ? '' : 'disabled'}">
+        <a th:if="${offers.hasPrevious()}"
+           th:href="@{/offers/all(size=${offers.getSize()},page=${offers.getNumber() - 1})}"
+           class="page-link" href="#">Previous</a>
+        <a th:unless="${offers.hasPrevious()}"
+           class="page-link" href="#">Previous</a>
+      </li>
+    </ul>
+  </nav>
+  <nav>
+    <ul class="pagination">
+      <li class="page-item" th:classappend="${offers.hasNext() ? '' : 'disabled'}">
+        <a th:if="${offers.hasNext()}"
+           th:href="@{/offers/all(size=${offers.getSize()},page=${offers.getNumber() + 1})}"
+           class="page-link" href="#">Next</a>
+        <a th:unless="${offers.hasNext()}"
+           class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
 
 <div th:replace="fragments/footer"></div>
 
