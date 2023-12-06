@@ -37,7 +37,32 @@
 
 
     </div>
+    <div class="container-fluid container-fluid row justify-content-center">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${requests.hasPrevious() ? '' : 'disabled'}">
+                    <a th:if="${requests.hasPrevious()}"
+                       th:href="@{/admin/all/requests(size=${requests.getSize()},page=${requests.getNumber() - 1})}"
+                       class="page-link" href="#">Previous</a>
+                    <a th:unless="${requests.hasPrevious()}"
+                       class="page-link" href="#">Previous</a>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${requests.hasNext() ? '' : 'disabled'}">
+                    <a th:if="${requests.hasNext()}"
+                       th:href="@{/admin/all/requests(size=${requests.getSize()},page=${requests.getNumber() + 1})}"
+                       class="page-link" href="#">Next</a>
+                    <a th:unless="${requests.hasNext()}"
+                       class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
+
 <div th:replace="fragments/footer"></div>
 
 </body>
