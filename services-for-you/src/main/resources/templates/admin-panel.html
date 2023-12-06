@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<div th:replace="fragments/commons"></div>
+<div th:replace="fragments/navbar"></div>
 <div class="container">
     <h2>Admin panel</h2>
     <div th:each="request : ${requests.getContent()}" th:object="${request}" class="panel-group">
@@ -37,6 +37,7 @@
 
     </div>
 </div>
+<div th:replace="fragments/footer"></div>
 
 </body>
 </html>

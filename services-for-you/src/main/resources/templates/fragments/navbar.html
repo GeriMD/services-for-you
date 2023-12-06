@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>Services for you</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body>
+<header>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Services for you</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a  href="/">Home</a></li>
+
+        <li><a href="/offers/all">All services</a></li>
+        <li><a href="/users/send/request">Become seller</a>
+        </li><li><a href="/admin/all/requests">Admin</a></li>
+        <li
+        ><a href="/offers/add">Add your service</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <th:block sec:authorize="!isAuthenticated()">
+          <li><a  href="/users/register"><span></span> Register</a></li>
+          <li><a  href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </th:block>
+
+        <li class="dropdown"><a class="dropdown-toggle; glyphicon glyphicon-user" data-toggle="dropdown"
+                                   href="#">Profile<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            </li><li><a href="/users/profile">View profile</a></li>
+            <th:block sec:authorize="isAuthenticated()">
+              <form th:action="@{/users/logout}" th:method="post">
+                <input class="btn btn-link nav-link text-black" type="submit" th:value="Logout">
+              </form>
+            </th:block>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+</body>
+
+</html>

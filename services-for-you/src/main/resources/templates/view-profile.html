@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
-<div th:replace="fragments/commons">  </div>
+<div th:replace="fragments/navbar">  </div>
 <div class="container"  th:object="${user}">
     <h2>Profile</h2>
     <div class="panel-group" style="display: flex">
@@ -22,6 +22,6 @@
 
     </div>
 </div>
-
+<div th:replace="fragments/footer"></div>
 </body>
 </html>
