@@ -21,6 +21,9 @@
       <div class="panel-heading">Seller: <span th:text="*{sellerFirstName}"> </span></div>
       <div class="panel-body">Category: <span th:text="*{category}"></span></div>
       <div class="panel-body">Price: <span th:text="*{price}"></span></div>
+      <div class="card-body">
+        <a class="card-link" href="#" th:href="@{/offers/{id}(id=*{id})}">Details</a>
+      </div>
     </div>
   </div>
 </main>

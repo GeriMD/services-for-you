@@ -5,6 +5,7 @@ import com.example.servicesforyou.models.enums.ServicesCategoryEnum;
 import java.math.BigDecimal;
 
 public class OfferDetailsDTO {
+    private Long id;
 
     private ServicesCategoryEnum category;
     private String description;
@@ -15,6 +16,14 @@ public class OfferDetailsDTO {
     private String sellerFirstName;
     private String sellerLastName;
     private Integer sellerAge;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getSellerFullNameAndAge() {
         return sellerFirstName + " " + sellerLastName + " " + sellerAge;

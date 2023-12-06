@@ -58,7 +58,7 @@ public class UserController {
 
         this.userService.registerAndLoginUser(userModel);
 
-        return "redirect:/users/view/profile";
+        return "redirect:/";
 
     }
 
