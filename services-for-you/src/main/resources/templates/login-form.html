@@ -43,9 +43,8 @@
                     placeholder="Password">
         </div>
 
-        <p th:if="${failed}" class="invalid-feedback errors alert alert-danger">
+        <p th:if="${fail}" class="invalid-feedback errors text-danger">
             Invalid username or password. Please try again.
-
         </p>
 
         <button type="submit" class="btn btn-default">Login</button>
