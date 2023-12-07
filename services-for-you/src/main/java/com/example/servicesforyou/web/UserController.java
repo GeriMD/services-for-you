@@ -1,6 +1,7 @@
 package com.example.servicesforyou.web;
 
 import com.example.servicesforyou.exception.ObjectNotFoundException;
+import com.example.servicesforyou.exception.UsernameTakenException;
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.binding.SendRequestBindingModel;
 import com.example.servicesforyou.models.entity.UserEntity;
@@ -12,8 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -42,25 +45,26 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String register() {
         return "register-form";
     }
 
     @PostMapping("/register")
     public String register(@Valid RegisterBindingModel userModel,
                            BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes,
-                           Model model){
+                           RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors() || !userModel.getPassword().equals(userModel.getConfirmPassword())){
+        if (bindingResult.hasErrors() || !userModel.getPassword().equals(userModel.getConfirmPassword())) {
             redirectAttributes.addFlashAttribute("userModel", userModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel",
                     bindingResult);
             userModel.setHaveErrors(true);
 
-
             return "redirect:/users/register";
 
+        }
+        if (userService.findUserByEmail(userModel.getEmail()).isPresent()) {
+            throw new UsernameTakenException("Username " + userModel.getEmail() + " is taken!", userModel.getEmail());
         }
 
         this.userService.registerAndLoginUser(userModel);
@@ -69,18 +73,28 @@ public class UserController {
 
     }
 
+    @ExceptionHandler(UsernameTakenException.class)
+    public ModelAndView usernameExists(UsernameTakenException exception) {
+        ModelAndView modelAndView = new ModelAndView("usernameTaken");
+
+        modelAndView.addObject("username", exception.getUsername());
+
+        return modelAndView;
+
+    }
+
     @GetMapping("/send/request")
-    public String sendRequest(){
+    public String sendRequest() {
         return "request-send";
     }
 
     @PostMapping("/send/request")
     public String sendRequest(@Valid SendRequestBindingModel requestModel,
                               BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes){
+                              RedirectAttributes redirectAttributes) {
 
 
-        if (bindingResult.hasErrors() || userService.findUserByEmail(requestModel.getEmail()).isEmpty()){
+        if (bindingResult.hasErrors() || userService.findUserByEmail(requestModel.getEmail()).isEmpty()) {
             redirectAttributes.addFlashAttribute("requestModel", requestModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.requestModel", bindingResult);
 
@@ -95,9 +109,9 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String viewProfile(Model model, Principal principal){
+    public String viewProfile(Model model, Principal principal) {
 
-        if (principal == null){
+        if (principal == null) {
             return "redirect:/users/login";
         }
         var user = userService.findUserByEmail(principal.getName()).orElseThrow(() -> new ObjectNotFoundException("User with username " + principal.getName() + " not found!"));
@@ -107,8 +121,7 @@ public class UserController {
 
         return "view-profile";
 
-     }
-
+    }
 
 
 }
