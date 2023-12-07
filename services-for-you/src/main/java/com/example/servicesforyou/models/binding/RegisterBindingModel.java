@@ -32,6 +32,17 @@ public class RegisterBindingModel {
     @NotNull
     @Enumerated(EnumType.STRING)
     private TownsEnum town;
+    private boolean haveErrors;
+
+    public boolean haveErrors() {
+        return haveErrors;
+    }
+
+    public void setHaveErrors(boolean haveErrors) {
+        this.haveErrors = haveErrors;
+    }
+
+
 
     public TownsEnum getTown() {
         return town;

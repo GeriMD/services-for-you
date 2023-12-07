@@ -20,7 +20,7 @@
         <h1 class="text-center">Register</h1>
     <form>
         <div class="form-group"  >
-            <label for="firstName">First Name</label>
+            <label for="firstName">First Name *</label>
             <input
                     th:field="*{firstName}"
                     th:errorclass="is-invalid"
@@ -28,7 +28,7 @@
                     class="form-control"
                     id="firstName"
                     placeholder="First Name">
-            <small class="invalid-feedback text-danger">NO</small>
+            <small class="text-black"> First name should be between 2 and 30 symbols.</small>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
@@ -39,10 +39,10 @@
                     class="form-control"
                     id="lastName"
                     placeholder="Last Name">
-            <small class="invalid-feedback text-danger">NO</small>
+            <small class="text-black"> Last name should be between 2 and 30 symbols.</small>
         </div>
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">Email *</label>
             <input
                     th:field="*{email}"
                     th:errorclass="is-invalid"
@@ -50,10 +50,10 @@
                     class="form-control"
                     id="email"
                     placeholder="Email">
-            <small class="invalid-feedback text-danger">NO</small>
+            <small class="text-black"> Email should be between 2 and 30 symbols.</small>
         </div>
         <div class="form-group">
-            <label for="age">Age</label>
+            <label for="age">Age *</label>
             <input
                     th:field="*{age}"
                     th:errorclass="is-invalid"
@@ -61,10 +61,9 @@
                     class="form-control"
                     id="age"
                     placeholder="Age">
-            <small class="invalid-feedback text-danger">NO</small>
         </div>
         <div class="form-group">
-            <label for="phoneNumber">Phone number</label>
+            <label for="phoneNumber">Phone number *</label>
             <input
                     th:field="*{phoneNumber}"
                     th:errorclass="is-invalid"
@@ -72,10 +71,10 @@
                     class="form-control"
                     id="phoneNumber"
                     placeholder="Phone number">
-            <small class="invalid-feedback text-danger">NO</small>
+            <small class="text-black"> Phone number should be at least 9 symbols.</small>
         </div>
         <div class="form-group">
-            <label class="text-center text-white font-weight-bold" for="town">Town</label>
+            <label class="text-center text-white font-weight-bold" for="town">Town *</label>
             <select
                     id="town"
                     name="town"
@@ -89,13 +88,11 @@
                     Town
                 </option>
             </select>
-            <p class="invalid-feedback errors alert alert-danger">
-                Town is required.
-            </p>
+
         </div>
 
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Password *</label>
             <input
                     th:field="*{password}"
                     th:errorclass="is-invalid"
@@ -103,10 +100,9 @@
                     class="form-control"
                     id="password"
                     placeholder="Password">
-            <small class="invalid-feedback text-danger">NO</small>
         </div>
         <div class="form-group">
-            <label for="confirmPassword">Confirm password</label>
+            <label for="confirmPassword">Confirm password *</label>
             <input th:field="*{confirmPassword}"
                    th:errorclass="is-invalid"
                     type="password"
@@ -115,8 +111,9 @@
                    placeholder="Confirm password">
 
         </div>
-        <p class="invalid-feedback errors alert alert-danger">
-            Confirmation password is required.
+        <p class="text-black"> All fields with * are required!</p>
+        <p th:if="*{haveErrors()}" class="invalid-feedback errors text-danger">
+            Invalid input. Please try again.
         </p>
 
 

@@ -49,13 +49,18 @@ public class UserController {
     @PostMapping("/register")
     public String register(@Valid RegisterBindingModel userModel,
                            BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes){
+                           RedirectAttributes redirectAttributes,
+                           Model model){
 
         if (bindingResult.hasErrors() || !userModel.getPassword().equals(userModel.getConfirmPassword())){
             redirectAttributes.addFlashAttribute("userModel", userModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel",
                     bindingResult);
+            userModel.setHaveErrors(true);
+
+
             return "redirect:/users/register";
+
         }
 
         this.userService.registerAndLoginUser(userModel);
