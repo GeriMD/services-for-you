@@ -1,36 +1,12 @@
-package com.example.servicesforyou.models.entity;
+package com.example.servicesforyou.models.DTO;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
-@Table(name = "sellers")
-public class SellersEntity {
-
-    @Id
+public class SellerDTO {
     private Long id;
-
-    @Column(nullable = false, unique = true)
     private String email;
-
-    @Column(nullable = false)
     private String firstName;
-
-    @Column(nullable = false)
     private String lastName;
-
-    @Column(nullable = false)
-    private Integer age;
-
-    @Column(nullable = false)
     private String phoneNumber;
-
-    @OneToMany
-    private List<OfferEntity> offers = new ArrayList<>();
-
-    public SellersEntity() {
-    }
+    private Integer age;
 
     public Long getId() {
         return id;
@@ -64,14 +40,6 @@ public class SellersEntity {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -80,11 +48,11 @@ public class SellersEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<OfferEntity> getOffers() {
-        return offers;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setOffers(List<OfferEntity> offers) {
-        this.offers = offers;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

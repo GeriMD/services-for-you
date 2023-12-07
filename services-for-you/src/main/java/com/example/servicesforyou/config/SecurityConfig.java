@@ -20,13 +20,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new Pbkdf2PasswordEncoder();
     }
 
-   @Bean
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http
-                                          ) throws Exception {
+    ) throws Exception {
 
         http
                 .authorizeRequests()
@@ -50,7 +50,8 @@ public class SecurityConfig {
                 .logoutUrl("/users/logout")
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID");
+                .deleteCookies("JSESSIONID")
+                .and().exceptionHandling().and().csrf();
 
 
         return http.build();
