@@ -1,8 +1,8 @@
 let loadSellersBtn = document.getElementById('loadSellers')
 
-loadSellersBtn.addEventListener('click', onLoanSellers );
+loadSellersBtn.addEventListener('click', onLoadSellers);
 
-function onLoanSellers(event){
+function onLoadSellers(event){
     var requestOptions = {
         method: 'GET',
         redirect: 'follow'

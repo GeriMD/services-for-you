@@ -50,9 +50,7 @@ public class UserEntity extends BaseEntity {
     public UserEntity() {
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -102,11 +100,11 @@ public class UserEntity extends BaseEntity {
         this.email = email;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
