@@ -15,6 +15,16 @@ public class SendRequestBindingModel {
 
     private String description;
 
+    public boolean isHaveErrors() {
+        return haveErrors;
+    }
+
+    public void setHaveErrors(boolean haveErrors) {
+        this.haveErrors = haveErrors;
+    }
+
+    private boolean haveErrors;
+
 
 
     public String getDescription() {

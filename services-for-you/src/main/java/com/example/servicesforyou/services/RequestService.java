@@ -1,5 +1,6 @@
 package com.example.servicesforyou.services;
 
+import com.example.servicesforyou.exception.MyNotFoundException;
 import com.example.servicesforyou.models.DTO.RequestDTO;
 import com.example.servicesforyou.models.binding.SendRequestBindingModel;
 import com.example.servicesforyou.models.entity.RequestEntity;
@@ -39,7 +40,7 @@ public class RequestService {
 
     public void addRequest(SendRequestBindingModel requestModel) {
         RequestEntity request = modelMapper.map(requestModel, RequestEntity.class);
-        UserEntity user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+        UserEntity user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new MyNotFoundException("User with email " + request.getEmail() + " was not found!"));
 
         request.setUserId(user.getId());
         request.setTown(user.getTown());
@@ -57,8 +58,8 @@ public class RequestService {
     }
 
     public void confirmRequest(Long id) {
-        RequestEntity request = requestRepository.findById(id).orElseThrow();
-        UserEntity user = userRepository.findById(request.getUserId()).orElseThrow();
+        RequestEntity request = requestRepository.findById(id).orElseThrow(() -> new MyNotFoundException("Request with id " + id + " was not found!"));
+        UserEntity user = userRepository.findById(request.getUserId()).orElseThrow(() -> new MyNotFoundException("User with id " + request.getUserId() + " was not found!"));
 
         SellersEntity seller = new SellersEntity();
         seller.setId(user.getId());

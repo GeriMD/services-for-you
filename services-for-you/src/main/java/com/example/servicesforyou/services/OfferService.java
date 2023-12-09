@@ -1,5 +1,6 @@
 package com.example.servicesforyou.services;
 
+import com.example.servicesforyou.exception.MyNotFoundException;
 import com.example.servicesforyou.models.DTO.OfferDetailsDTO;
 import com.example.servicesforyou.models.binding.AddOfferBindingModel;
 import com.example.servicesforyou.models.entity.OfferEntity;
@@ -39,7 +40,7 @@ public class OfferService {
         OfferEntity newOffer = modelMapper.map(addOfferBindingModel, OfferEntity.class);
 
         SellersEntity seller = sellerRepository.findByEmail(userDetails.getUsername()).
-                orElseThrow();
+                orElseThrow(() -> new MyNotFoundException("Seller with email " + userDetails.getUsername() + " was not found!"));
 
 
         newOffer.setSeller(seller);
@@ -76,5 +77,5 @@ public class OfferService {
         return user.getUserRoles().stream().anyMatch(r -> r.getUserRole() == RolesEnum.ADMIN);
     }
 
-    //TODO: ADD ADMIN IN SELLERS TABLE DEFAULT!
+
 }

@@ -1,5 +1,6 @@
 package com.example.servicesforyou.web;
 
+import com.example.servicesforyou.exception.MyNotFoundException;
 import com.example.servicesforyou.models.binding.AddOfferBindingModel;
 import com.example.servicesforyou.models.user.MyUserDetails;
 import com.example.servicesforyou.services.OfferService;
@@ -77,7 +78,7 @@ public class OfferController {
                                  Model model) {
 
         var offerDto =
-                offerService.findOfferById(id).orElseThrow();
+                offerService.findOfferById(id).orElseThrow(() -> new MyNotFoundException("Offer with id " + id + " was not found!"));
 
         model.addAttribute("offer", offerDto);
 

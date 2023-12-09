@@ -1,5 +1,6 @@
 package com.example.servicesforyou.services;
 
+import com.example.servicesforyou.exception.MyNotFoundException;
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.entity.SellersEntity;
 import com.example.servicesforyou.models.entity.UserEntity;
@@ -79,9 +80,9 @@ public class UserService {
         RolesEnum userRole = RolesEnum.valueOf(roleStringUser);
         RolesEnum sellerRole = RolesEnum.valueOf(roleStringSeller);
 
-        UserRolesEntity roleAdmin = rolesRepository.findByRole(adminRole).orElseThrow();
-        UserRolesEntity roleUser = rolesRepository.findByRole(userRole).orElseThrow();
-        UserRolesEntity roleSeller = rolesRepository.findByRole(sellerRole).orElseThrow();
+        UserRolesEntity roleAdmin = rolesRepository.findByRole(adminRole).orElseThrow(() -> new MyNotFoundException("Role " + adminRole + " was not found!"));
+        UserRolesEntity roleUser = rolesRepository.findByRole(userRole).orElseThrow(() -> new MyNotFoundException("Role " + userRole + " was not found!"));
+        UserRolesEntity roleSeller = rolesRepository.findByRole(sellerRole).orElseThrow(() -> new MyNotFoundException("Role " + sellerRole + " was not found!"));
 
         rolesList.add(roleAdmin);
         rolesList.add(roleUser);

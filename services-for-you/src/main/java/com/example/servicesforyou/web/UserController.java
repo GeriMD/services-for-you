@@ -1,14 +1,12 @@
 package com.example.servicesforyou.web;
 
-import com.example.servicesforyou.exception.ObjectNotFoundException;
+import com.example.servicesforyou.exception.MyNotFoundException;
 import com.example.servicesforyou.exception.UsernameTakenException;
 import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.binding.SendRequestBindingModel;
-import com.example.servicesforyou.models.entity.UserEntity;
 import com.example.servicesforyou.repositories.UserRepository;
 import com.example.servicesforyou.services.RequestService;
 import com.example.servicesforyou.services.UserService;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -97,6 +94,7 @@ public class UserController {
         if (bindingResult.hasErrors() || userService.findUserByEmail(requestModel.getEmail()).isEmpty()) {
             redirectAttributes.addFlashAttribute("requestModel", requestModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.requestModel", bindingResult);
+            requestModel.setHaveErrors(true);
 
             return "redirect:/users/send/request";
         }
@@ -105,8 +103,9 @@ public class UserController {
         requestService.addRequest(requestModel);
 
         return "redirect:/";
-
     }
+
+
 
     @GetMapping("/profile")
     public String viewProfile(Model model, Principal principal) {
@@ -114,7 +113,7 @@ public class UserController {
         if (principal == null) {
             return "redirect:/users/login";
         }
-        var user = userService.findUserByEmail(principal.getName()).orElseThrow(() -> new ObjectNotFoundException("User with username " + principal.getName() + " not found!"));
+        var user = userService.findUserByEmail(principal.getName()).orElseThrow(() -> new MyNotFoundException("User with username " + principal.getName() + " not found!"));
 
         model.addAttribute("user", user);
 

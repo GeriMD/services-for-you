@@ -40,8 +40,10 @@
                 <li class="dropdown"><a class="dropdown-toggle; glyphicon glyphicon-user" data-toggle="dropdown"
                                         href="#">Profile<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-
+                        <th:block sec:authorize="isAuthenticated()">
                             <li><a href="/users/profile">View profile</a></li>
+                        </th:block>
+
 
 
                         <th:block sec:authorize="isAuthenticated()">
