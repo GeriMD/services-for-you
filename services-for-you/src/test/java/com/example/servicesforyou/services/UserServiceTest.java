@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import com.example.servicesforyou.models.DTO.UserDTO;
-import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.entity.UserEntity;
-import com.example.servicesforyou.models.entity.UserRolesEntity;
-import com.example.servicesforyou.models.enums.RolesEnum;
 import com.example.servicesforyou.models.mapper.UserMapper;
+import com.example.servicesforyou.repositories.SellerRepository;
 import com.example.servicesforyou.repositories.UserRepository;
 import com.example.servicesforyou.repositories.UserRolesRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -40,10 +37,12 @@ public class UserServiceTest {
     private UserMapper userMapper;
     @Mock
     private UserService userService;
+    @Mock
+    private SellerRepository sellerRepository;
 
     @BeforeEach
     public void setUp() {
-        userService = new UserService(passwordEncoder, userRepository, userDetailsService, rolesRepository, modelMapper, userMapper);
+        userService = new UserService(passwordEncoder, userRepository, userDetailsService, rolesRepository, modelMapper, userMapper, sellerRepository);
     }
 
 
