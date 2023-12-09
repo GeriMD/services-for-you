@@ -15,11 +15,7 @@ public class TownsEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TownsEnum townName;
 
-    @OneToMany
-    private List<UserEntity> userTown = new ArrayList<>();
 
-    @OneToMany
-    private List<OfferEntity> offers = new ArrayList<>();
 
     public TownsEntity() {
     }
@@ -32,19 +28,5 @@ public class TownsEntity extends BaseEntity {
         this.townName = townName;
     }
 
-    public List<UserEntity> getUserTown() {
-        return userTown;
-    }
 
-    public void setUserTown(List<UserEntity> userTown) {
-        this.userTown = userTown;
-    }
-
-    public List<OfferEntity> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<OfferEntity> offers) {
-        this.offers = offers;
-    }
 }

@@ -48,12 +48,12 @@ public class UserService {
         this.sellerRepository = sellerRepository;
     }
 
-    public void registerAndLoginUser(RegisterBindingModel registerBindingModel){
-     UserEntity user = modelMapper.map(registerBindingModel, UserEntity.class);
+    public void registerAndLoginUser(RegisterBindingModel registerBindingModel) {
+        UserEntity user = modelMapper.map(registerBindingModel, UserEntity.class);
         user.setPassword(passwordEncoder.encode(registerBindingModel.getPassword()));
-       String roleString = "USER";
-       RolesEnum role = RolesEnum.valueOf(roleString);
-       UserRolesEntity roleUser = rolesRepository.findByRole(role).orElseThrow();
+        String roleString = "USER";
+        RolesEnum role = RolesEnum.valueOf(roleString);
+        UserRolesEntity roleUser = rolesRepository.findByRole(role).orElseThrow();
 
         List<UserRolesEntity> roles = new ArrayList<>();
         roles.add(roleUser);
@@ -67,7 +67,7 @@ public class UserService {
 
     public void createAdminIfNotExist() {
 
-        if (userRepository.count() != 0){
+        if (userRepository.count() != 0) {
             return;
         }
         List<UserRolesEntity> rolesList = new ArrayList<>();
@@ -97,24 +97,21 @@ public class UserService {
         admin.setPassword(passwordEncoder.encode("adminpass"));
         admin.setTown(TownsEnum.VIDIN);
         admin.setUserRoles(rolesList);
-
-     //   SellersEntity sellerAdmin = new SellersEntity();
-      //  sellerAdmin.setEmail(admin.getEmail());
-      //  sellerAdmin.setId(admin.getId());
-      //  sellerAdmin.setPhoneNumber(admin.getPhoneNumber());
-      //  sellerAdmin.setAge(admin.getAge());
-     //  sellerAdmin.setFirstName(admin.getFirstName());
-      //  sellerAdmin.setLastName(admin.getLastName());
-
-
-
-
         userRepository.save(admin);
-        //sellerRepository.save(sellerAdmin); TODO! ADD ADMIN TO SELLERS
+
+        SellersEntity sellerAdmin = new SellersEntity();
+        sellerAdmin.setEmail(admin.getEmail());
+        sellerAdmin.setId(admin.getId());
+        sellerAdmin.setPhoneNumber(admin.getPhoneNumber());
+        sellerAdmin.setAge(admin.getAge());
+        sellerAdmin.setFirstName(admin.getFirstName());
+        sellerAdmin.setLastName(admin.getLastName());
+
+        sellerRepository.save(sellerAdmin);
     }
 
 
-    public void login(String email){
+    public void login(String email) {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
@@ -129,7 +126,6 @@ public class UserService {
                 getContext().
                 setAuthentication(auth);
     }
-
 
 
     public Optional<UserDTO> findUserByEmail(String name) {

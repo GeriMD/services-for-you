@@ -27,6 +27,7 @@ public class SellerService {
         return sellerRepository.findById(id).map(sellerMapper::sellerEntityToSellerDTO);
     }
 
+
     public void deleteSellerById(Long id){
         sellerRepository.deleteById(id);
     }

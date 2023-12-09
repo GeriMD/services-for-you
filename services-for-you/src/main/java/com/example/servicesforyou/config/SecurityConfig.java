@@ -50,8 +50,7 @@ public class SecurityConfig {
                 .logoutUrl("/users/logout")
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .and().exceptionHandling().and().csrf();
+                .deleteCookies("JSESSIONID");
 
 
         return http.build();

@@ -26,8 +26,7 @@ public class SellersEntity {
     @Column(nullable = false)
     private String phoneNumber;
 
-    @OneToMany
-    private List<OfferEntity> offers = new ArrayList<>();
+
 
     public SellersEntity() {
     }
@@ -80,11 +79,4 @@ public class SellersEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<OfferEntity> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<OfferEntity> offers) {
-        this.offers = offers;
-    }
 }
