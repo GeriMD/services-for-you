@@ -12,7 +12,8 @@ function onLoadSellers(event){
 
     sellersContainer.innerHTML = ''
 
-    fetch("http://localhost:8080/sellers/all", requestOptions).then(response => response.json())
+    fetch("http://localhost:8080/sellers/all", requestOptions)
+        .then(response => response.json())
         .then(json => json.forEach(seller => {
             let row = document.createElement('tr')
 

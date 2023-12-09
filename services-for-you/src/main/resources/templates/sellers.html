@@ -5,28 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Services for you</title>
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../static/styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
           integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
           crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
-<button id="loadSellers">All sellers</button>
-<table>
+<button class="btn btn-default" style="display: block; margin: auto" id="loadSellers">All sellers</button>
+<table >
   <thead>
-  <tr>
-    <th>Email</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Phone number</th>
-    <th>Age</th>
-    <th>Action</th>
+  <tr >
+    <th>Email  </th>
+    <th>First Name  </th>
+    <th>Last Name  </th>
+    <th>Phone number  </th>
+    <th>Age  </th>
+    <th>Action  </th>
   </tr>
   </thead>
   <tbody id="sellers-container"></tbody>
 </table>
 
-<form>
+ <!-- <form>
   <h3>FORM</h3>
   <label>TITLE</label>
   <input type="title" id="email" placeholder="Email...">
@@ -39,7 +42,7 @@
   <label>ISBN</label>
   <input type="title" id="age" placeholder="Age...">
   <button>Submit</button>
-</form>
-<script th:src="@{/app.js}"></script>
+</form> -->
+<script th:src="@{/js/app.js}"></script>
 </body>
 </html>

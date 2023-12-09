@@ -5,11 +5,12 @@ import com.example.servicesforyou.services.SellerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/sellers/all")
+@RequestMapping("/api/sellers")
 public class SellerRestController {
     private final SellerService sellerService;
 
@@ -17,24 +18,12 @@ public class SellerRestController {
         this.sellerService = sellerService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<SellerDTO>> getAllSellers(){
-        return ResponseEntity.ok(sellerService.getAllSellers());
 
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<SellerDTO> getSellerById(@PathVariable("id") Long id){
-        Optional<SellerDTO> sellerDTOOptional = sellerService.findSellerById(id);
-
-        return sellerDTOOptional.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<SellerDTO> deleteSellerById(@PathVariable("id") Long id){
-        sellerService.deleteSellerById(id);
-
-        return ResponseEntity.noContent().build();
-
+    @GetMapping("/all")
+    public ResponseEntity<List<SellerDTO>> getSellers(
+            Principal principal
+    ) {
+        return ResponseEntity.ok(
+                sellerService.getAllSellers());
     }
 }
