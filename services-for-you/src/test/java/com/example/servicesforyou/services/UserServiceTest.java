@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import com.example.servicesforyou.models.DTO.UserDTO;
+import com.example.servicesforyou.models.binding.RegisterBindingModel;
 import com.example.servicesforyou.models.entity.UserEntity;
+import com.example.servicesforyou.models.entity.UserRolesEntity;
+import com.example.servicesforyou.models.enums.TownsEnum;
 import com.example.servicesforyou.models.mapper.UserMapper;
 import com.example.servicesforyou.repositories.SellerRepository;
 import com.example.servicesforyou.repositories.UserRepository;
@@ -48,7 +51,7 @@ public class UserServiceTest {
 
     @Test
     public void testFindUserByEmail() {
-        String email = "test@example.com";
+        String email = "test@abv.bg";
         UserDTO mockUserDTO = new UserDTO();
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(new UserEntity()));
         when(userMapper.offerEntityToUserDTO(any())).thenReturn(mockUserDTO);
@@ -59,5 +62,20 @@ public class UserServiceTest {
         assertNotNull(foundUser.get());
         assertEquals(mockUserDTO, foundUser.get());
     }
+
+    @Test
+    public void testCreateAdminIfNotExist() {
+
+        when(userRepository.count()).thenReturn(0L);
+        when(rolesRepository.findByRole(any())).thenReturn(Optional.of(new UserRolesEntity()));
+
+        userService.createAdminIfNotExist();
+
+
+        verify(userRepository, times(1)).save(any());
+        verify(sellerRepository, times(1)).save(any());
+    }
+
+
 
 }

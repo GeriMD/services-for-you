@@ -25,7 +25,6 @@ public class UserEntity extends BaseEntity {
 
     @Column(nullable = false)
     private Integer age;
-    private String imageUrl;
 
     @Column(nullable = false)
     private String phoneNumber;
@@ -108,11 +107,4 @@ public class UserEntity extends BaseEntity {
         this.age = age;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }
