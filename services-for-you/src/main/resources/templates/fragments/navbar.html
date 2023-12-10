@@ -28,7 +28,7 @@
                 <th:block sec:authorize="hasRole('SELLER')">
                     <li><a href="/offers/add">Add your service</a></li>
                 </th:block>
-                <li><a href="/sellers/all">All sellers</a></li>
+
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -37,10 +37,8 @@
                     <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </th:block>
 
-                <li class="dropdown"><a class="dropdown-toggle; glyphicon glyphicon-user" data-toggle="dropdown"
-                                        href="#">Profile<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <th:block sec:authorize="isAuthenticated()">
+
+                <th:block sec:authorize="isAuthenticated()">
                             <li><a href="/users/profile">View profile</a></li>
                         </th:block>
 
@@ -52,7 +50,7 @@
                             </form>
                         </th:block>
 
-                    </ul>
+
                 </li>
             </ul>
         </div>

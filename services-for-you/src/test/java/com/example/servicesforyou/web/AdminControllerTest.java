@@ -50,8 +50,6 @@ public class AdminControllerTest {
 
         @Test
         public void testConfirmRequest() throws Exception {
-            RequestService requestService = mock(RequestService.class);
-            AdminPanelController adminPanelController = new AdminPanelController(requestService);
 
             MockMvc mockMvc = MockMvcBuilders.standaloneSetup(adminPanelController).build();
 

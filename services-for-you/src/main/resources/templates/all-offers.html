@@ -26,7 +26,7 @@
     </div>
   </div>
 
-<div class="container-fluid container-fluid row justify-content-center">
+<div class="container-fluid container-fluid row justify-content-center" style="display: flex; margin-left: 47%" >
   <nav>
     <ul class="pagination">
       <li class="page-item" th:classappend="${offers.hasPrevious() ? '' : 'disabled'}">
@@ -39,7 +39,7 @@
     </ul>
   </nav>
   <nav>
-    <ul class="pagination">
+    <ul class="pagination" >
       <li class="page-item" th:classappend="${offers.hasNext() ? '' : 'disabled'}">
         <a th:if="${offers.hasNext()}"
            th:href="@{/offers/all(size=${offers.getSize()},page=${offers.getNumber() + 1})}"

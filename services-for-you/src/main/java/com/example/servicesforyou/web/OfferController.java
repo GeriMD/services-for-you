@@ -33,7 +33,7 @@ public class OfferController {
     public String allOffers(
             Model model,
             @PageableDefault(
-                    sort = "price",
+                    sort = "category",
                     direction = Sort.Direction.ASC,
                     page = 0,
                     size = 5) Pageable pageable) {
@@ -63,6 +63,7 @@ public class OfferController {
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("addOfferModel", addOfferBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addOfferModel", bindingResult);
+            addOfferBindingModel.setHaveErrors(true);
 
             return "redirect:/offers/add";
         }

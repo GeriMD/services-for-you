@@ -20,7 +20,7 @@
 
         <form>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email *</label>
                 <input
                         th:field="*{email}"
                         th:errorclass="is-invalid"
@@ -28,9 +28,10 @@
                         class="form-control"
                         id="email"
                         placeholder="Email">
+                <small class="text-black"> Email should match your email.</small>
             </div>
             <div class="form-group"  >
-                <label for="firstName">First Name</label>
+                <label for="firstName">First Name *</label>
                 <input
                         th:field="*{firstName}"
                         th:errorclass="is-invalid"
@@ -38,6 +39,7 @@
                         class="form-control"
                         id="firstName"
                         placeholder="First Name">
+                <small class="text-black"> First name should be between 2 and 30 symbols.</small>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
@@ -48,9 +50,10 @@
                         class="form-control"
                         id="lastName"
                         placeholder="Last Name">
+                <small class="text-black"> Last name should be between 2 and 30 symbols.</small>
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description">Description *</label>
                 <input
                         th:field="*{description}"
                         th:errorclass="is-invalid"
@@ -58,7 +61,10 @@
                         class="form-control"
                         id="description"
                         placeholder="Description">
+                <small class="text-black"> Description should be at least 5 symbols.</small>
             </div>
+
+            <p class="text-black"> All fields with * are required!</p>
             <p th:if="*{haveErrors}" class="invalid-feedback errors text-danger">
                 Invalid input. Please try again.
             </p>

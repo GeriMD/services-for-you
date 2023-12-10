@@ -19,7 +19,7 @@
           th:object="${addOfferModel}">
         <h1>Add offer</h1>
         <div class="form-group">
-            <label class="text-center text-white font-weight-bold" for="category">Category</label>
+            <label class="text-center text-white font-weight-bold" for="category">Category *</label>
             <select
                     id="category"
                     name="category"
@@ -33,12 +33,9 @@
                     Category
                 </option>
             </select>
-            <p class="invalid-feedback errors alert alert-danger">
-                Category is required.
-            </p>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description">Description *</label>
             <input
                     th:field="*{description}"
                     th:errorclass="is-invalid"
@@ -46,12 +43,10 @@
                     class="form-control"
                     id="description"
                     placeholder="Description">
-            <p class="invalid-feedback errors alert alert-danger">
-                Description is required.
-            </p>
+            <small class="text-black"> Description should be at least 5 symbols.</small>
         </div>
         <div class="form-group">
-            <label for="price">Price</label>
+            <label for="price">Price *</label>
             <input
                     type="number"
                     th:field="*{price}"
@@ -60,10 +55,12 @@
                     id="price"
                     min = "0"
                     placeholder="Price">
-            <p class="invalid-feedback errors alert alert-danger">
-                Price is required.
-            </p>
+            <small class="text-black"> Price should be positive number.</small>
         </div>
+        <p class="text-black"> All fields with * are required!</p>
+        <p th:if="*{haveErrors}" class="invalid-feedback errors text-danger">
+            Invalid input. Please try again.
+        </p>
 
         <button type="submit" class="btn btn-default" >Add</button>
     </form>

@@ -6,6 +6,7 @@ import com.example.servicesforyou.models.enums.ServicesCategoryEnum;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 
@@ -16,12 +17,22 @@ public class AddOfferBindingModel {
     private ServicesCategoryEnum category;
 
     @NotNull
-    @Size(min = 10)
+    @Size(min = 5)
     private String description;
 
     @NotNull
+    @Positive
     private double price;
 
+    private boolean haveErrors;
+
+    public boolean isHaveErrors() {
+        return haveErrors;
+    }
+
+    public void setHaveErrors(boolean haveErrors) {
+        this.haveErrors = haveErrors;
+    }
 
     public ServicesCategoryEnum getCategory() {
         return category;

@@ -3,6 +3,7 @@ package com.example.servicesforyou.models.binding;
 import com.example.servicesforyou.models.enums.TownsEnum;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class SendRequestBindingModel {
 
@@ -10,8 +11,13 @@ public class SendRequestBindingModel {
     private String email;
 
     @NotNull
+    @Size(min = 2, max = 30)
     private String firstName;
+    @Size(min = 2, max = 30)
     private String lastName;
+
+    @NotNull
+    @Size(min = 5)
 
     private String description;
 
